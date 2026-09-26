@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Atlas of the Meltiverse: the Fromaggio Prime system</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧀</text></svg>"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,0..100;1,9..144,300..700,0..100&family=Quicksand:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="scene"></div>
+    <div class="vignette" aria-hidden="true"></div>
+    <div id="labels"></div>
+
+    <div class="left">
+      <header class="cartouche">
+        <h1>Atlas of the Meltiverse</h1>
+        <svg class="drip" viewBox="0 0 300 40" aria-hidden="true">
+          <defs>
+            <linearGradient
+              id="melt"
+              gradientUnits="userSpaceOnUse"
+              x1="0"
+              y1="0"
+              x2="300"
+              y2="0"
+            >
+              <stop offset="0" stop-color="#fff0c4" />
+              <stop offset="0.45" stop-color="#f6c453" />
+              <stop offset="1" stop-color="#e2a39b" />
+            </linearGradient>
+          </defs>
+          <rect x="0" y="0" width="300" height="7" rx="3.5" fill="url(#melt)" />
+          <path
+            class="d"
+            style="--delay: 0.1s"
+            d="M40 5 H52 V21 A6 6 0 0 1 40 21 Z"
+            fill="url(#melt)"
+          />
+          <path
+            class="d"
+            style="--delay: 0.35s"
+            d="M128 5 H136 V14 A4 4 0 0 1 128 14 Z"
+            fill="url(#melt)"
+          />
+          <path
+            class="d"
+            style="--delay: 0.2s"
+            d="M214 5 H225 V29 A5.5 5.5 0 0 1 214 29 Z"
+            fill="url(#melt)"
+          />
+          <path
+            class="d"
+            style="--delay: 0.5s"
+            d="M268 5 H274 V11 A3 3 0 0 1 268 11 Z"
+            fill="url(#melt)"
+          />
+          <circle class="drop" cx="219.5" cy="38" r="2.6" fill="#f6c453" />
+        </svg>
+        <p class="where">
+          The Fromaggio Prime system, deep in the Cheese Nebula
+        </p>
+        <p class="by">
+          Charted for the Grand Library of Cheese Knowledge by Claude, Royal
+          Cheese Archivist, September 2026
+        </p>
+      </header>
+
+      <nav class="atlas" aria-label="Places in the system">
+        <div class="group">
+          <h3>Worlds</h3>
+          <div class="list" id="nav-worlds"></div>
+        </div>
+        <div class="group">
+          <h3>Wonders</h3>
+          <div class="list" id="nav-wonders"></div>
+        </div>
+      </nav>
+    </div>
+
+    <aside class="ledger" id="ledger" aria-labelledby="l-title">
+      <button
+        class="ledger-close"
+        id="l-close"
+        type="button"
+        aria-label="Close this ledger entry"
+      >
+        ×
+      </button>
+      <p class="ledger-entry" id="l-entry"></p>
+      <h2 id="l-title"></h2>
+      <p class="ledger-kind" id="l-kind"></p>
+      <div class="ledger-desc" id="l-desc"></div>
+      <dl class="ledger-stats" id="l-stats"></dl>
+      <blockquote class="ledger-quote" id="l-quote"></blockquote>
+      <div class="boop-row">
+        <button class="boop-btn" id="l-boop" type="button">
+          Boop this world
+        </button>
+        <span class="boop-count" id="l-count" aria-live="polite"></span>
+      </div>
+    </aside>
+
+    <div class="dock">
+      <p class="hint" id="hint">
+        Drag to orbit, scroll or pinch to zoom, and click any world to open its
+        ledger entry.
+      </p>
+      <div class="dock-row">
+        <button type="button" id="btn-home">🏰 Whole system</button>
+        <button type="button" id="btn-tour" aria-pressed="false">
+          ✨ Grand tour
+        </button>
+        <button type="button" id="btn-orbits" aria-pressed="true">
+          Orbits
+        </button>
+        <button type="button" id="btn-labels" aria-pressed="true">
+          Labels
+        </button>
+        <label class="speed"
+          >Melt speed
+          <input type="range" id="speed" min="0" max="4" step="0.1" value="1" />
+          <output id="speed-out" for="speed">1×</output>
+        </label>
+      </div>
+    </div>
+
+    <p class="ticker" aria-live="polite">
+      <b>Smoochlight Broadcasting Service weather</b
+      ><span id="ticker-text"
+        >Today: 87% chance of fondue showers over the Great Fondue Sea.</span
+      >
+    </p>
+
+    <div class="loader" id="loader">
+      <div class="loader-inner">
+        <svg viewBox="0 0 80 80" aria-hidden="true">
+          <path d="M10 58 L70 58 L70 26 Z" fill="#f6c453" />
+          <path d="M10 58 L70 26 L62 18 L4 50 Z" fill="#ffe2a0" />
+          <circle cx="56" cy="47" r="5" fill="#d8962a" />
+          <circle cx="64" cy="37" r="2.8" fill="#d8962a" />
+          <circle cx="40" cy="53" r="2.6" fill="#d8962a" />
+          <circle cx="18" cy="16" r="1.8" fill="#ff4fa3" />
+          <circle cx="32" cy="8" r="1.3" fill="#3ad7ff" />
+          <circle cx="72" cy="9" r="1.6" fill="#ffe2a0" />
+        </svg>
+        <p class="loader-title">Charting the Meltiverse</p>
+        <p class="loader-msg" id="loader-msg">Curdling the Cheese Nebula…</p>
+        <noscript
+          ><p class="loader-msg">
+            This map needs JavaScript turned on.
+          </p></noscript
+        >
+      </div>
+    </div>
+
+    <!-- three.js r147 (UMD build) + OrbitControls -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.147.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/controls/OrbitControls.js"></script>
+
+    <script src="script.js"></script>
+  </body>
+</html>
