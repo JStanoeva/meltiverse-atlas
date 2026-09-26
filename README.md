@@ -6,7 +6,7 @@ Fly through a cosmic cheese nebula, visit golden paradise worlds, read each plac
 
 ![Atlas of the Meltiverse: the Fromaggio Prime system](./assets/screenshot.png)
 
-## 🔗 **Live map:** [The Meltiverse Atlas](JStanoeva.github.io/meltiverse-atlas)
+## 🔗 **Live map:** [The Meltiverse Atlas](https://jstanoeva.github.io/meltiverse-atlas/)
 
 ## 🌌 What you can explore
 
