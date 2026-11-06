@@ -1,0 +1,39 @@
+/* ============ Design tokens ============ */
+:root {
+  --space: #0a0614; /* deep aubergine space */
+  --gold: #f6c453; /* parmesan gold */
+  --gold-soft: #ffe2a0;
+  --rose: #e2a39b; /* rose gold */
+  --pink: #ff4fa3; /* smooch pink */
+  --blue: #3ad7ff; /* boop blue */
+  --cream: #fff1d6;
+  --muted: #c9b3bd;
+  --line: rgba(226, 163, 155, 0.3);
+  --serif:
+    "Fraunces", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --round:
+    "Quicksand", "Nunito", "Varela Round", "Trebuchet MS", system-ui, sans-serif;
+  --st: env(safe-area-inset-top, 0px);
+  --sb: env(safe-area-inset-bottom, 0px);
+  --sl: env(safe-area-inset-left, 0px);
+  --sr: env(safe-area-inset-right, 0px);
+}
+
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: var(--space);
+  color: var(--cream);
+  font-family: var(--round);
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+button {
+  font: inherit;
+  color: inherit;
+}

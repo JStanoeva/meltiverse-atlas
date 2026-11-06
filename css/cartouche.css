@@ -1,0 +1,139 @@
+/* ============ Left column: title cartouche ============ */
+/* (the atlas index below it lives in atlas-nav.css) */
+.left {
+  position: fixed;
+  top: calc(22px + var(--st));
+  left: calc(24px + var(--sl));
+  bottom: calc(118px + var(--sb));
+  width: min(330px, calc(100vw - 48px));
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  pointer-events: none;
+}
+.cartouche h1 {
+  margin: 0;
+  font-family: var(--serif);
+  font-weight: 650;
+  font-size: clamp(32px, 4.3vw, 54px);
+  line-height: 0.95;
+  letter-spacing: -0.015em;
+  font-variation-settings:
+    "SOFT" 100,
+    "opsz" 144;
+  background: linear-gradient(
+    105deg,
+    #fff4d1 0%,
+    var(--gold) 34%,
+    var(--rose) 68%,
+    var(--pink) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.drip {
+  display: block;
+  width: clamp(190px, 22vw, 290px);
+  height: auto;
+  margin: 10px 0 0;
+  overflow: visible;
+  filter: drop-shadow(0 0 10px rgba(246, 196, 83, 0.35));
+}
+.drip .d {
+  transform-box: fill-box;
+  transform-origin: 50% 0;
+  transform: scaleY(0.15);
+}
+.drip .drop {
+  opacity: 0;
+  transform-box: fill-box;
+}
+body.ready .drip .d {
+  animation: drip 1.8s cubic-bezier(0.3, 0.8, 0.25, 1) forwards;
+  animation-delay: var(--delay);
+}
+body.ready .drip .drop {
+  animation: drop 6s ease-in 2.4s infinite;
+}
+@keyframes drip {
+  to {
+    transform: scaleY(1);
+  }
+}
+@keyframes drop {
+  0%,
+  55% {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  62% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+}
+.cartouche .where {
+  margin: 8px 0 0;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 16px;
+  font-variation-settings:
+    "SOFT" 100,
+    "opsz" 18;
+  color: var(--rose);
+}
+.cartouche .by {
+  margin: 6px 0 0;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--muted);
+  max-width: 34ch;
+}
+
+/* ---------- Small screens ---------- */
+@media (max-width: 760px) {
+  .left {
+    top: calc(14px + var(--st));
+    left: calc(16px + var(--sl));
+    bottom: auto;
+    width: calc(100vw - 32px);
+  }
+  .cartouche h1 {
+    font-size: 30px;
+  }
+  .cartouche .by {
+    display: none;
+  }
+  .cartouche .where {
+    font-size: 14px;
+    margin-top: 6px;
+  }
+  .drip {
+    width: 170px;
+    margin-top: 6px;
+  }
+}
+@media (max-height: 620px) and (min-width: 761px) {
+  .cartouche .by {
+    display: none;
+  }
+  .cartouche h1 {
+    font-size: 34px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drip .d {
+    transform: none;
+  }
+  body.ready .drip .d {
+    animation: none;
+  }
+  .drip .drop {
+    display: none;
+  }
+}
