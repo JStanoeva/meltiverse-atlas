@@ -17,14 +17,26 @@
       href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,0..100;1,9..144,300..700,0..100&family=Quicksand:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css" />
+    <!-- one stylesheet per component, plus shared tokens in base.css -->
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/scene.css" />
+    <link rel="stylesheet" href="css/labels.css" />
+    <link rel="stylesheet" href="css/cartouche.css" />
+    <link rel="stylesheet" href="css/atlas-nav.css" />
+    <link rel="stylesheet" href="css/ledger.css" />
+    <link rel="stylesheet" href="css/dock.css" />
+    <link rel="stylesheet" href="css/ticker.css" />
+    <link rel="stylesheet" href="css/loader.css" />
   </head>
   <body>
+    <!-- 3D stage: js/core/stage.js · css/scene.css -->
     <div id="scene"></div>
     <div class="vignette" aria-hidden="true"></div>
+    <!-- Floating name tags: js/ui/labels.js · css/labels.css -->
     <div id="labels"></div>
 
     <div class="left">
+      <!-- Title cartouche: css/cartouche.css -->
       <header class="cartouche">
         <h1>Atlas of the Meltiverse</h1>
         <svg class="drip" viewBox="0 0 300 40" aria-hidden="true">
@@ -78,6 +90,7 @@
         </p>
       </header>
 
+      <!-- Atlas index: js/ui/atlas-nav.js · css/atlas-nav.css -->
       <nav class="atlas" aria-label="Places in the system">
         <div class="group">
           <h3>Worlds</h3>
@@ -90,6 +103,7 @@
       </nav>
     </div>
 
+    <!-- Lactose Ledger panel: js/ui/ledger.js · css/ledger.css -->
     <aside class="ledger" id="ledger" aria-labelledby="l-title">
       <button
         class="ledger-close"
@@ -113,6 +127,7 @@
       </div>
     </aside>
 
+    <!-- Control dock: js/ui/dock.js · css/dock.css -->
     <div class="dock">
       <p class="hint" id="hint">
         Drag to orbit, scroll or pinch to zoom, and click any world to open its
@@ -137,6 +152,7 @@
       </div>
     </div>
 
+    <!-- SBS weather ticker: js/ui/ticker.js · css/ticker.css -->
     <p class="ticker" aria-live="polite">
       <b>Smoochlight Broadcasting Service weather</b
       ><span id="ticker-text"
@@ -144,6 +160,7 @@
       >
     </p>
 
+    <!-- Loading screen: js/ui/loader.js · css/loader.css -->
     <div class="loader" id="loader">
       <div class="loader-inner">
         <svg viewBox="0 0 80 80" aria-hidden="true">
@@ -170,6 +187,15 @@
     <script src="https://cdn.jsdelivr.net/npm/three@0.147.0/build/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/controls/OrbitControls.js"></script>
 
-    <script src="script.js"></script>
+    <!--
+      The atlas itself, as ES modules (js/main.js is the entry point).
+      Browsers refuse to load modules from file:// pages, so if this fails
+      the loader explains how to open the map through a local server.
+    -->
+    <script
+      type="module"
+      src="js/main.js"
+      onerror="document.getElementById('loader-msg').textContent = 'The map’s code couldn’t load. If you opened index.html straight from your files, open it through a local web server instead (see the README).'; document.getElementById('loader').classList.add('failed')"
+    ></script>
   </body>
 </html>

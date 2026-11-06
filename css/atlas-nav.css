@@ -1,0 +1,111 @@
+/* ============ Atlas index: the Worlds and Wonders lists ============ */
+.atlas {
+  pointer-events: auto;
+  flex: 0 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px 8px;
+  border-radius: 18px;
+  border: 1px solid rgba(226, 163, 155, 0.16);
+  background: linear-gradient(
+    180deg,
+    rgba(26, 15, 38, 0.6),
+    rgba(12, 7, 22, 0.45)
+  );
+  scrollbar-width: thin;
+  scrollbar-color: rgba(226, 163, 155, 0.35) transparent;
+}
+.atlas .group,
+.atlas .list {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.atlas h3 {
+  margin: 0 10px 4px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 13.5px;
+  font-variation-settings: "SOFT" 100;
+  color: var(--rose);
+}
+.atlas button {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: 100%;
+  padding: 6px 14px 6px 10px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 13.5px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
+}
+.atlas button i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--c);
+  box-shadow: 0 0 8px var(--c);
+  flex: none;
+}
+.atlas button:hover {
+  color: var(--cream);
+  background: rgba(255, 241, 214, 0.06);
+}
+.atlas button.active {
+  color: var(--gold-soft);
+  background: rgba(246, 196, 83, 0.13);
+}
+
+.atlas button:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+/* ---------- Small screens: a scrolling row of chips above the dock ---------- */
+@media (max-width: 760px) {
+  .atlas {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: auto;
+    bottom: calc(66px + var(--sb));
+    flex-direction: row;
+    gap: 6px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 6px 14px;
+    border: 0;
+    border-radius: 0;
+    background: none;
+    scrollbar-width: none;
+  }
+  .atlas .group,
+  .atlas .list {
+    flex-direction: row;
+    gap: 6px;
+  }
+  .atlas h3 {
+    display: none;
+  }
+  .atlas button {
+    width: auto;
+    white-space: nowrap;
+    padding: 7px 12px;
+    border: 1px solid rgba(226, 163, 155, 0.22);
+    border-radius: 999px;
+    background: rgba(14, 8, 24, 0.75);
+  }
+}

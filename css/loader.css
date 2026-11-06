@@ -1,0 +1,59 @@
+/* ============ Loader ============ */
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(ellipse at 50% 45%, #22122e 0%, var(--space) 70%);
+  transition:
+    opacity 1.2s ease,
+    visibility 0s linear 1.2s;
+}
+.loader.done {
+  opacity: 0;
+  visibility: hidden;
+}
+.loader-inner {
+  padding: 24px;
+  text-align: center;
+}
+.loader svg {
+  width: 76px;
+  height: 76px;
+  animation: bob 2.4s ease-in-out infinite;
+}
+@keyframes bob {
+  50% {
+    transform: translateY(-8px) rotate(-6deg);
+  }
+}
+.loader-title {
+  margin: 18px 0 6px;
+  font-family: var(--serif);
+  font-size: 26px;
+  font-weight: 600;
+  font-variation-settings:
+    "SOFT" 100,
+    "opsz" 48;
+  color: var(--gold-soft);
+}
+.loader-msg {
+  margin: 0 auto;
+  max-width: 42ch;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--rose);
+}
+.loader.failed svg {
+  animation: none;
+  opacity: 0.5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loader svg {
+    animation: none;
+  }
+}

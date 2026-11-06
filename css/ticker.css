@@ -1,0 +1,33 @@
+/* ============ SBS weather ticker ============ */
+.ticker {
+  position: fixed;
+  right: calc(20px + var(--sr));
+  bottom: calc(22px + var(--sb));
+  max-width: min(360px, 34vw);
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--muted);
+  text-align: right;
+}
+.ticker b {
+  display: block;
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 13px;
+  color: var(--rose);
+  font-variation-settings: "SOFT" 100;
+}
+.ticker span {
+  transition: opacity 0.5s;
+}
+.ticker span.fade {
+  opacity: 0;
+}
+
+@media (max-width: 760px) {
+  .ticker {
+    display: none;
+  }
+}
